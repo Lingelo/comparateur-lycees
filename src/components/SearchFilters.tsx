@@ -43,7 +43,7 @@ export function SearchFilters({ filters, onUpdate, departements }: SearchFilters
           <select
             value={filters.departement}
             onChange={(e) => onUpdate('departement', e.target.value)}
-            className="rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-700 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+            className="w-full sm:w-auto rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-700 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
           >
             <option value="">Tous les départements</option>
             {departements.map((d) => (
@@ -55,7 +55,7 @@ export function SearchFilters({ filters, onUpdate, departements }: SearchFilters
           <select
             value={filters.secteur}
             onChange={(e) => onUpdate('secteur', e.target.value as Filters['secteur'])}
-            className="rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-700 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+            className="w-full sm:w-auto rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-700 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
           >
             <option value="">Public & Privé</option>
             <option value="public">Public</option>
@@ -66,7 +66,7 @@ export function SearchFilters({ filters, onUpdate, departements }: SearchFilters
           <select
             value={filters.type}
             onChange={(e) => onUpdate('type', e.target.value as Filters['type'])}
-            className="rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-700 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+            className="w-full sm:w-auto rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-700 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
           >
             <option value="">GT & Pro</option>
             <option value="GT">Général & Technologique</option>

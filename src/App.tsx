@@ -1,12 +1,13 @@
 import { useState, useCallback, useMemo } from 'react';
 import type { Lycee } from './types';
 import { useLycees } from './hooks/useLycees';
-import { getDepartements } from './utils/format';
+import { getDepartements, timeAgo } from './utils/format';
 import { Header } from './components/Header';
 import { SearchFilters } from './components/SearchFilters';
 import { StatsBar } from './components/StatsBar';
 import { LyceeTable } from './components/LyceeTable';
 import { ComparePanel } from './components/ComparePanel';
+import { AboutModal } from './components/AboutModal';
 
 export default function App() {
   const {
@@ -23,6 +24,7 @@ export default function App() {
   } = useLycees();
 
   const [compareUais, setCompareUais] = useState<string[]>([]);
+  const [showAbout, setShowAbout] = useState(false);
 
   const departements = useMemo(
     () => (data ? getDepartements(data.lycees) : []),
@@ -122,9 +124,23 @@ export default function App() {
             <a href="https://data.education.gouv.fr" target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-600">
               data.education.gouv.fr
             </a>
+            {data?.meta.generatedAt && (
+              <>
+                {' · '}
+                <span className="text-gray-300">{timeAgo(data.meta.generatedAt)}</span>
+              </>
+            )}
+            {' · '}
+            <button onClick={() => setShowAbout(true)} className="underline hover:text-gray-600">
+              A propos
+            </button>
           </p>
         </div>
       </footer>
+
+      {showAbout && (
+        <AboutModal onClose={() => setShowAbout(false)} lastUpdate={data?.meta.generatedAt} />
+      )}
     </div>
   );
 }
